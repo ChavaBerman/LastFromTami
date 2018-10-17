@@ -1,0 +1,165 @@
+﻿
+@{
+   
+}
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Tabs - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+    <script>
+
+        var barChartData =
+        {
+            labels: [@Html.Raw(ViewBag.colors)],
+            datasets: [{
+                label: 'שמלות',
+                backgroundColor: [
+                    "#f990a7",
+                    "#aad2ed",
+                    "#9966FF",
+                    "#99e5e5",
+                    "#f7bd83",
+                ],
+                borderWidth: 2,
+                data: [@ViewBag.colorsValues]
+            }]
+        };
+         var PieChartData =
+            {
+                labels: [@Html.Raw(ViewBag.catgories)],
+                datasets: [{
+                    label: 'ProductWise Sales Count',
+                    backgroundColor: [
+                        "#f990a7",
+                        "#aad2ed",
+                        "#9966FF",
+                        "#99e5e5",
+                        "#f7bd83",
+                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.catgoriesValues]
+                }]
+            };
+        window.onload = function () {
+            var ctx1 = document.getElementById("barcanvas").getContext("2d");
+            window.myBar = new Chart(ctx1,
+                {
+                    type: 'bar',
+                    data: barChartData,
+                    options:
+                    {
+                        title:
+                        {
+                            display: true,
+                            text: "התפלגות הצבעים הפופולריים:"
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true
+                    }
+                });
+             ctx1 = document.getElementById("Piecanvas").getContext("2d");
+            window.myBar = new Chart(ctx1,
+                {
+                    type: 'pie',
+                    data: PieChartData,
+                    options:
+                    {
+                        title:
+                        {
+                            display: true,
+                            text: "ProductWise Sales Count"
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true
+                    }
+                });
+        }
+        $(document).ready(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+    @*<script>
+
+        var PieChartData =
+            {
+                labels: [@Html.Raw(ViewBag.catgories)],
+                datasets: [{
+                    label: 'ProductWise Sales Count',
+                    backgroundColor: [
+                        "#f990a7",
+                        "#aad2ed",
+                        "#9966FF",
+                        "#99e5e5",
+                        "#f7bd83",
+                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.catgoriesValues]
+                }]
+            };
+
+            window.onload = function () {
+                var ctx1 = document.getElementById("Piecanvas").getContext("2d");
+                window.myBar = new Chart(ctx1,
+                    {
+                        type: 'pie',
+                        data: PieChartData,
+                        options:
+                            {
+                                title:
+                                {
+                                    display: true,
+                                    text: "ProductWise Sales Count"
+                                },
+                                responsive: true,
+                                maintainAspectRatio: true
+                            }
+                    });
+            }
+    </script>*@
+
+</head>
+
+<body>
+
+  
+    <div id="tabs" style="margin-top: 10%;">
+            <ul>
+                <li><a href="#tabs-1">צבע</a></li>
+                <li><a href="#tabs-2">בהיר/כהה</a></li>
+                <li><a href="#tabs-3">ארוך/קצר</a></li>
+                <li><a href="#tabs-4">קהל יעד פופולרי</a></li>
+                <li><a href="#tabs-5">טווח מחירים</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div style="text-align: center;">
+                    <canvas id="barcanvas"></canvas>
+                </div>
+
+            </div>
+            <div id="tabs-2">
+                <div style="text-align: center">
+                    <canvas id="Piecanvas"></canvas>
+                </div>
+            </div>
+            <div id="tabs-3">
+                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+            </div>
+            <div id="tabs-4">
+                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+            </div>
+            <div id="tabs-5">
+            </div>
+        </div>
+
+
+</body>
+
+
